@@ -1,0 +1,439 @@
+/* Palet Warna Glassmorphism */
+:root {
+    --bg-color-gradient-start: #8BC6EC; /* Biru muda */
+    --bg-color-gradient-end: #9599E2;   /* Ungu muda */
+    --card-bg-color: rgba(255, 255, 255, 0.15); /* Putih transparan untuk efek kaca */
+    --border-color: rgba(255, 255, 255, 0.2);
+    --text-color-dark: #2c3e50; /* Teks gelap untuk kontras */
+    --text-color-light: #ffffff;
+    --main-accent-color: #007bff; /* Biru Primer */
+    --success-color: #28a745; /* Hijau */
+    --danger-color: #dc3545; /* Merah */
+    --disabled-color: rgba(180, 180, 180, 0.5); /* Warna disabled baru */
+}
+
+/* Gaya Umum & Glassmorphism Background */
+body { 
+    font-family: 'Inter', sans-serif; /* FONT UTAMA */
+    margin: 0; 
+    padding: 60px 0;
+    /* Latar belakang gradasi yang cerah dan modern */
+    background: linear-gradient(135deg, var(--bg-color-gradient-start) 0%, var(--bg-color-gradient-end) 100%);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    color: var(--text-color-dark);
+    min-height: 100vh;
+    overflow-x: hidden;
+    padding-bottom: 80px; /* Tambahan padding untuk sticky footer */
+}
+
+/* Pseudo-elemen untuk "blob" dekoratif */
+body::before, body::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px); 
+    opacity: 0.6;
+    z-index: -1;
+}
+
+body::before {
+    background: linear-gradient(135deg, #FFD700, #FF6347); 
+    width: 200px;
+    height: 200px;
+    top: 10%;
+    left: 10%;
+    animation: blob-move 10s infinite alternate ease-in-out;
+}
+
+body::after {
+    background: linear-gradient(135deg, #1E90FF, #3CB371); 
+    width: 250px;
+    height: 250px;
+    bottom: 15%;
+    right: 15%;
+    animation: blob-move 12s infinite alternate-reverse ease-in-out;
+}
+
+@keyframes blob-move {
+    0% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(30px, -20px) scale(1.1); }
+    66% { transform: translate(-20px, 40px) scale(0.9); }
+    100% { transform: translate(0, 0) scale(1); }
+}
+
+
+.container { 
+    width: 90%;
+    max-width: 1000px;
+    padding: 50px; 
+    border-radius: 20px;
+    /* Efek Glassmorphism pada container utama */
+    background: var(--card-bg-color);
+    backdrop-filter: blur(10px); 
+    -webkit-backdrop-filter: blur(10px); 
+    border: 1px solid var(--border-color);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1); 
+}
+
+/* Header */
+.header-section {
+    text-align: center;
+    margin-bottom: 50px;
+    padding-bottom: 25px;
+    border-bottom: 2px solid var(--border-color);
+}
+h1 { 
+    font-family: 'Montserrat', sans-serif; 
+    color: var(--text-color-dark);
+    font-size: 38px;
+    margin-bottom: 8px;
+    font-weight: 800;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+}
+h2 {
+    font-family: 'Inter', sans-serif; 
+    color: var(--main-accent-color);
+    font-size: 20px;
+    margin-top: 0;
+    font-weight: 500;
+}
+h3 {
+    font-family: 'Montserrat', sans-serif; 
+    color: var(--text-color-dark);
+    font-weight: 700;
+    margin-top: 60px;
+    margin-bottom: 30px;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 15px;
+    font-size: 26px;
+}
+
+/* --- Layout Konten Utama dengan Card --- */
+.main-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+.card {
+    border-radius: 20px;
+    padding: 30px;
+    /* Efek Glassmorphism pada Card */
+    background: var(--card-bg-color);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease-in-out;
+    width: 100%;
+    box-sizing: border-box;
+}
+.card:hover {
+    box-shadow: 0 6px 24px 0 rgba(0, 0, 0, 0.12);
+    transform: translateY(-3px);
+}
+.input-card { 
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 20px; 
+}
+.action-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px 30px;
+}
+
+/* Gaya untuk Jam Real-time (DIHALUSKAN) */
+.clock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+    padding: 15px; /* Sedikit lebih kecil */
+    width: 100%;
+    background: rgba(255, 255, 255, 0.1); /* Lebih transparan */
+    border-radius: 12px;
+    backdrop-filter: blur(5px);
+    border: 1px solid var(--border-color);
+    box-shadow: none; /* Hilangkan shadow di jam */
+}
+
+.time-display {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 50px; 
+    font-weight: 800;
+    color: var(--text-color-dark);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+    line-height: 1;
+}
+
+.date-display {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px; /* Sedikit lebih kecil */
+    font-weight: 500;
+    color: var(--text-color-dark);
+    margin-bottom: 5px;
+}
+
+/* Formulir Input */
+.form-group { width: calc(50% - 10px); margin-bottom: 0; }
+.form-group.large-input { width: 100%; }
+label { 
+    display: block; 
+    margin-bottom: 8px; 
+    font-weight: 600; 
+    color: var(--text-color-dark); 
+    font-size: 15px;
+}
+input[type="text"], textarea { 
+    width: 100%; 
+    padding: 14px 18px; 
+    border: 1px solid var(--border-color); 
+    border-radius: 12px; 
+    box-sizing: border-box; 
+    font-size: 16px;
+    background: rgba(255, 255, 255, 0.05); 
+    color: var(--text-color-dark);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease-in-out;
+}
+input[type="text"]:focus, textarea:focus {
+    outline: none;
+    border-color: var(--main-accent-color); 
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.3);
+    background: rgba(255, 255, 255, 0.1);
+}
+textarea { resize: vertical; }
+
+/* Gaya untuk Validasi Error */
+.input-error {
+    border: 3px solid var(--danger-color) !important; 
+    box-shadow: 0 0 5px rgba(220, 53, 69, 0.7) !important; 
+    transition: all 0.2s ease-in-out;
+}
+
+input.input-error:focus, textarea.input-error:focus {
+    box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.3), 0 0 0 6px rgba(0, 123, 255, 0.1); 
+    border-color: var(--danger-color) !important;
+}
+
+/* Tombol Aksi */
+.action-buttons { 
+    display: flex; 
+    gap: 20px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+.action-buttons button { 
+    flex: 1;
+    padding: 16px 25px; 
+    font-size: 17px; 
+    font-weight: 700;
+    border: 1px solid var(--border-color);
+    border-radius: 10px; 
+    cursor: pointer; 
+    color: var(--text-color-light); 
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: rgba(255, 255, 255, 0.2); 
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+}
+
+#checkInBtn { background: linear-gradient(135deg, var(--success-color), #6dd5ed); } 
+#checkOutBtn { background: linear-gradient(135deg, var(--danger-color), #ffaf7b); }
+
+.action-buttons button:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    transform: translateY(-3px) scale(1.02);
+}
+.action-buttons button:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+.action-buttons button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed !important;
+    background: var(--disabled-color); /* Menggunakan variabel baru */
+    box-shadow: none !important;
+    transform: none !important;
+}
+
+/* Status Notifikasi */
+#statusMessage {
+    text-align: center;
+    padding: 18px 20px;
+    width: 100%;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.1); 
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    color: var(--text-color-dark);
+    font-weight: 600;
+    font-size: 16px;
+}
+
+/* Tabel Absensi (History) */
+.history {
+    margin-top: 60px;
+}
+.table-responsive {
+    overflow-x: auto;
+    border-radius: 15px;
+    background: var(--card-bg-color);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.08);
+}
+table { 
+    width: 100%; 
+    border-collapse: collapse; 
+    font-size: 14px; 
+    background-color: transparent; 
+}
+th, td { 
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Border lebih tipis/transparan */
+    padding: 16px 10px;
+    text-align: center; 
+}
+th { 
+    /* Latar header tabel lebih lembut */
+    background-color: rgba(0, 123, 255, 0.2); 
+    color: var(--text-color-dark); /* Ubah ke dark agar kontras dengan latar transparan */
+    font-weight: 700; 
+    text-transform: uppercase;
+    border-top: none;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+}
+/* Memperbaiki tampilan tabel */
+table { border-left: none; border-right: none; }
+th:first-child, td:first-child { border-left: none; }
+th:last-child, td:last-child { border-right: none; }
+tbody tr:nth-child(even) { 
+    background-color: rgba(255, 255, 255, 0.05); 
+}
+tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Hover lebih lembut */
+    cursor: default;
+}
+
+/* --- Gaya untuk Sticky Footer Aksi (DIHALUSKAN) --- */
+.sticky-footer-actions {
+    position: fixed; 
+    bottom: 0; 
+    left: 0;
+    width: 100%;
+    padding: 10px 20px;
+    
+    background: rgba(255, 255, 255, 0.15); /* Lebih transparan */
+    backdrop-filter: blur(10px);
+    border-top: 1px solid var(--border-color);
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1); /* Shadow lebih lembut */
+    
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    z-index: 1000; 
+}
+
+.sticky-footer-actions button {
+    font-size: 16px;
+    padding: 10px 20px;
+    min-width: 150px;
+    flex-grow: 1;
+    max-width: 400px;
+    border: none;
+    
+    /* Gunakan gradien yang sama dengan tombol atas */
+    background: linear-gradient(135deg, var(--success-color), #6dd5ed); 
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease-in-out;
+    border-radius: 8px;
+    font-weight: 700;
+}
+
+#checkOutBtnBottom {
+    background: linear-gradient(135deg, var(--danger-color), #ffaf7b); /* Gradient yang sama */
+}
+
+.sticky-footer-actions button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.sticky-footer-actions button:disabled {
+    background: var(--disabled-color) !important;
+    cursor: not-allowed !important;
+    transform: none !important;
+    box-shadow: none !important;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* --- Tambahan untuk Loading Spinner (SAMA) --- */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.spinner {
+    display: inline-block;
+    width: 1em; 
+    height: 1em;
+    margin-right: 0.5em;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    border-top-color: #fff; 
+    animation: spin 1s ease-in-out infinite;
+    vertical-align: middle;
+}
+
+.action-buttons button:disabled {
+    cursor: wait !important;
+    transform: none !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Responsif */
+@media (max-width: 768px) {
+    body { padding-bottom: 70px; } /* Sesuaikan padding untuk mobile */
+    .container { 
+        padding: 30px;
+        width: 95%;
+    }
+    .input-card {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .form-group { width: 100%; }
+    .action-buttons { flex-direction: column; gap: 10px; }
+    h1 { font-size: 30px; }
+    h2 { font-size: 16px; }
+
+    .sticky-footer-actions {
+        padding: 8px 15px;
+        gap: 10px;
+    }
+    .sticky-footer-actions button {
+        font-size: 14px;
+        padding: 10px 15px;
+        min-width: unset;
+    }
+    .time-display {
+        font-size: 40px;
+    }
+}
