@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Absensi Magang Mahasiswa - Glassmorphism</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="icon" type="image/png" href="favicon.png"> 
+    
+    <link rel="manifest" href="manifest.json">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css"> 
+</head>
+<body>
+
+<div class="container">
+    
+    <button id="themeToggle" class="theme-toggle">🌙 Dark Mode</button>
+
+    <div class="header-section">
+        <h1>DAFTAR HADIR MAGANG MAHASISWA</h1>
+        <h2>PT. WIJAYA KARYA BETON TBK</h2>
+    </div>
+    
+    <div class="main-content-wrapper">
+        
+        <div class="card input-card">
+            <div class="form-group">
+                <label for="inputNama">Nama Mahasiswa:</label>
+                <input type="text" id="inputNama" placeholder="Masukkan Nama Lengkap (Hanya Huruf)" required>
+            </div>
+            <div class="form-group">
+                <label for="inputNIM">NIM:</label>
+                <input type="tel" id="inputNIM" placeholder="Masukkan NIM (Angka & Huruf)" required>
+            </div>
+            <div class="form-group large-input">
+                <label for="inputKegiatan">Kegiatan Utama Hari Ini:</label>
+                <textarea id="inputKegiatan" rows="3" placeholder="Jelaskan kegiatan utama Anda hari ini (Hanya Huruf)" required></textarea>
+            </div>
+        </div>
+
+        <div class="card action-card">
+            <div id="realTimeClock" class="clock"></div>
+
+            <div class="action-buttons">
+                <button id="checkInBtn" onclick="checkIn()">✅ Check In</button>
+                <button id="checkOutBtn" onclick="checkOut()" disabled>🚪 Check Out</button>
+            </div>
+            <p id="statusMessage">Status: Siap untuk Check In.</p>
+        </div>
+        
+    </div>
+    
+    <div class="history">
+        <h3>Riwayat Absensi</h3>
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tanggal</th>
+                        <th>Jam Masuk</th>
+                        <th>Jam Keluar</th>
+                        <th>Nama</th>
+                        <th>NIM</th>
+                        <th>Kegiatan</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="absensiTableBody">
+                    </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="sticky-footer-actions">
+    <button id="checkInBtnBottom" onclick="checkIn()">✅ Check In</button>
+    <button id="checkOutBtnBottom" onclick="checkOut()" disabled>🚪 Check Out</button>
+</div>
+
+<script src="script.js"></script> 
+
+</body>
+</html>
